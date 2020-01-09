@@ -9,7 +9,7 @@ function sanitizeFormPassword($inputText){
 function sanitizeFormUsername($inputText){
     $inputText = strip_tags($inputText);
     //strip_tags — 文字列から HTML および PHP タグを取り除く
-    $inputText = str_replace(" ","",$inputText);
+    $inputText = str_replace(" ", "",$inputText);
     //str_replace — 検索文字列に一致したすべての文字列を置換する
     return $inputText;
 } 
@@ -17,7 +17,7 @@ function sanitizeFormUsername($inputText){
 function sanitizeFormString ($inputText){
     $inputText = strip_tags($inputText);
     //strip_tags — 文字列から HTML および PHP タグを取り除く
-    $inputText = str_replace(" ","",$inputText);
+    $inputText = str_replace(" ", "",$inputText);
     //str_replace — 検索文字列に一致したすべての文字列を置換する
     $inputText = ucfirst(strtolower($inputText));
     //ucfirst — 文字列の最初の文字を大文字にする
@@ -37,8 +37,10 @@ if(isset($_POST['registerButton'])){
 	$password = sanitizeFormPassword($_POST['password']);
     $password2 = sanitizeFormPassword($_POST['password2']);
     
-    $account->register($username,$firstName,$lastName,$email,$email2,$password,$password2);
-
+    $wasSuccessful = $account->register($username, $firstName, $lastName, $email, $email2, $password, $password2);
+    if($wasSuccessful == true){
+       header("Location: index.php");
+    }
 }
 
 ?>
