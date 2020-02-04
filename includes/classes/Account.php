@@ -8,6 +8,20 @@ class Account{
       $this->errorArray = array();
     }
 
+    public function login($un,$pw){
+      $pw = md5($pw);
+
+      $query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$un' AND password='$pw'");
+
+      if(mysqli_num_rows($query) == 1){
+          return true;
+      }else{
+         array_push($this->errorArray, Constants::$loginFailed);
+         return false; 
+      }
+    }
+
+
     public function register($un, $fn, $ln, $em, $em2, $pw, $pw2){
         $this->validateUsername($un);
         $this->validateFirstName($fn);
@@ -50,6 +64,11 @@ class Account{
         }
 
         //todo: check is username exists
+        $checkUsernameQuery = mysqli_query($this->con, "SELECT username FROM users WHERE username='$un'");
+        if(mysqli_num_rows($checkUsernameQuery) != 0){
+            array_push($this->errorArray, Constans::$usernameTaken);
+            return;
+        }
 
     }
     
@@ -80,6 +99,11 @@ class Account{
             return;
         }
         //todo: check that username hasn't already been used　ユーザー名がまだ使用されていないことを確認してください
+        $checkEmailQuery = mysqli_query($this->con, "SELECT email FROM users WHERE email='$em'");
+        if(mysqli_num_rows($checkEmailQuery) != 0){
+            array_push($this->errorArray, Constans::$emailTaken);
+            return;
+        }
     }
 
     private function validatePasswords($pw,$pw2){
