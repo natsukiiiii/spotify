@@ -26,6 +26,26 @@
     <script src="assets/js/register.js"></script>
 </head>
 <body>
+
+<?php
+if(isset($_POST['registerButton'])){
+    echo '<script>
+            $(document).ready(function(){
+                $("#loginForm").hide();
+                $("#registerForm").show();
+            });
+          </script>';
+}else{
+    echo '<script>
+            $(document).ready(function(){
+                $("#loginForm").show();
+                $("#registerForm").hide();
+            });
+           </script>';
+}
+
+?>
+    
     <div id="background">
 
 <div id="loginContainer">
@@ -36,7 +56,7 @@
                         <p>
                         <?php echo $account->getError(Constants::$loginFailed);?>
                         <lable for="loginUsername">Username</lable>
-                        <input placeholder="e.g. roriyomechannel" type="text" id="loginUsername" name="loginUsername" required>
+                        <input placeholder="e.g. roriyomechannel" type="text" id="loginUsername" name="loginUsername" value="<?php getInputValue('loginUsername')?>" required>
                         </p>
                         <p>
                         <lable for="loginPassword">Password</lable>
@@ -97,6 +117,16 @@
                     </div>
                 </form>
             </div>
+
+            <div id="loginText">
+              <h1>get great music, right now</h1>
+              <h2>Listen to loads of songs for free</h2><ul>
+                  <li>Discover music you'll fall in love with</li>
+                  <li>create your own playlist</li>
+                  <li>Follow artists to keep up to date</li>
+              </ul>
+            </div>
+
         </div>
     </div>
 </body>

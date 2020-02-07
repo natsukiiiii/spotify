@@ -1,8 +1,8 @@
 <?php 
 if(isset($_POST['loginButton'])){
     //login button was pressed
-    $username = $POST['loginUsername'];
-    $password = $POST['loginPassword'];
+    $username = $_POST['loginUsername'];
+    $password = $_POST['loginPassword'];
 
     $result = $account->login($username, $password);
 
