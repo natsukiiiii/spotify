@@ -234,3 +234,31 @@ body{
 .gridViewItem a{
     text-decoration: none;
 }
+
+.entityInfo{
+    padding: 40px 0 10px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.entityInfo .leftsection{
+    width: 30%;
+    float: left;
+    max-width: 250px;
+}
+
+.entityInfo .leftsection img{
+    width: 100%;
+}
+
+.entityInfo .rightSection{
+    width: 70%;
+    float: left;
+    padding: 5px 10px 5px 40px;
+    box-sizing: border-box;
+    /* box-sizing …… ボックスサイズの算出方法を指定する */
+    /* content-box
+    パディングとボーダーを幅と高さに含めない（初期値）
+    border-box
+    パディングとボーダーを幅と高さに含める */
+}
